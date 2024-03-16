@@ -2,9 +2,11 @@ import * as Yup from 'yup'
 
 export interface FormProps {
     file: any;
+    name: string;
+    tags: string;
   }
 
-export const formScheme: FormProps = { file: '' }
+export const formScheme: FormProps = { file: '', name: '', tags: '' }
 
 export const formValidationScheme = Yup.object().shape({
     file: Yup.mixed<Blob>()
@@ -14,6 +16,6 @@ export const formValidationScheme = Yup.object().shape({
     })
     .test('type', 'Accepted formats: XML', (file) => {
         console.log(file.type)
-        return file.type === 'text/xml';
+        return file.type === 'image/png';
     })
 })

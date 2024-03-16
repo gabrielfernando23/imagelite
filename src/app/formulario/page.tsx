@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { RenderIf } from '@/components';
 import { useNotification } from '@/components'
 import { FormProps, formScheme, formValidationScheme } from './formScheme'
+import { Input } from 'postcss'
 
 
 
@@ -32,6 +33,8 @@ export default function FormularioPage() {
 
     const formData = new FormData()
     formData.append('file', dados.file)
+    formData.append('name', dados.name)
+    formData.append('tags', dados.tags)
 
     await service.salvar(formData)
 
@@ -59,6 +62,10 @@ export default function FormularioPage() {
           <div className='mt-5 grid grid-cols1'>
             <label className='block text-sm font-medium leading-6 text-gray-600'>Image: *</label>
             <FieldError error={formik.errors.file} />
+            <label className='block text-sm font-medium leading-6 text-gray600'>Nome:</label>
+            <InputText value={formik.values.name} id='name' onChange={formik.handleChange} placeholder='Digite o nome da imagem' />
+            <label className='block text-sm font-medium leading-6 text-gray600'>Tags:</label>
+            <InputText value={formik.values.tags} id='tags' onChange={formik.handleChange} placeholder='Digite as tags' />
             <div className='mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10'>
               <div className='text-center'>
                 <RenderIf condition={!imagePreview}>
