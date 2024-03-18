@@ -11,11 +11,7 @@ export const formScheme: FormProps = { file: '', name: '', tags: '' }
 export const formValidationScheme = Yup.object().shape({
     file: Yup.mixed<Blob>()
     .required('Select an image to upload!')
-    .test('size', 'File size cannot be higher than 4 MB', (file) => {
-        return file.size < 4000000;
-    })
-    .test('type', 'Accepted formats: XML', (file) => {
-        console.log(file.type)
-        return file.type === 'image/png';
+    .test('size', 'File size cannot be higher than 20 MB', (file) => {
+        return file.size < 20000000;
     })
 })
