@@ -3,7 +3,7 @@ import { Image } from './image.resource'
 import { Content } from 'next/font/google';
 
 class ImageService {
-    baseURL: string = 'http://imagelite-api:8080/v1/images';
+    baseURL: string = 'http://172.19.03:8080/v1/images';
 
     async buscar(query: string = "", extension: string = "") : Promise<Image[]> {
         const url = `${this.baseURL}?query=${query}&extension=${extension}`;
