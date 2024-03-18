@@ -6,7 +6,7 @@ class ImageService {
     baseURL: string = 'http://172.19.03:8080/v1/images';
 
     async buscar(query: string = "", extension: string = "") : Promise<Image[]> {
-        const url = `${this.baseURL}?query=${query}&extension=${extension}`;
+        const url = `${this.baseURL}`;
         
         console.log('Fazendo requisição GET para:', url);
 
