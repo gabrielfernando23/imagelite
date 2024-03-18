@@ -1,8 +1,8 @@
-# Use a imagem base do Node.js 18
+# Use uma imagem base do Node.js
 FROM node:18
 
 # Defina o diretório de trabalho dentro do contêiner
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Copie o package.json e o package-lock.json para o diretório de trabalho
 COPY package*.json ./
@@ -10,11 +10,8 @@ COPY package*.json ./
 # Instale as dependências do projeto
 RUN npm install
 
-# Copie o restante dos arquivos do projeto para o diretório de trabalho
+# Copie o restante dos arquivos do aplicativo para o diretório de trabalho
 COPY . .
 
-# Exponha a porta em que o aplicativo será executado
-EXPOSE 3000
-
-# Comando para iniciar o aplicativo quando o contêiner for iniciado
-CMD ["npm", "start"]
+# Comando para iniciar o aplicativo usando npm run dev
+CMD ["npm", "run", "dev"]
