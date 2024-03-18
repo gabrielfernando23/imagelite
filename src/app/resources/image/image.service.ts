@@ -6,19 +6,33 @@ class ImageService {
     baseURL: string = 'http://localhost:8081/v1/images';
 
     async buscar(query: string = "", extension: string = "") : Promise<Image[]> {
-        const url = `${this.baseURL}?query=${query}&extension=${extension}`
-        const response = await fetch(url);
-        return await response.json();
+        const url = `${this.baseURL}?query=${query}&extension=${extension}`;
+        
+        console.log('Fazendo requisição GET para:', url);
+
+        try {
+            const response = await fetch(url);
+            return await response.json();
+        } catch (error) {
+            console.error('Erro ao buscar imagens:', error);
+            throw error;
+        }
     }
 
     async salvar (dados: FormData): Promise<string> {
-        console.log('Enviando imagem')
-        const response = await fetch(this.baseURL, {
-            method: 'POST',
-            body: dados,
-        })
+        console.log('Enviando imagem para:', this.baseURL);
 
-        return response.headers.get('location') ?? ''
+        try {
+            const response = await fetch(this.baseURL, {
+                method: 'POST',
+                body: dados,
+            });
+            
+            return response.headers.get('location') ?? '';
+        } catch (error) {
+            console.error('Erro ao salvar imagem:', error);
+            throw error;
+        }
     }
 }
 
