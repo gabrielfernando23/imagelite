@@ -14,13 +14,11 @@ export default function GaleriaPage() {
   const useService = useImageService();
   const notification = useNotification();
   const [images, setImages] = useState<Image[]>([])
-  const [query, setQuery] = useState<string>('')
-  const [extension, setExtension] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
 
   async function searchImages() {
     setLoading(true)
-    const result = await useService.buscar(query, extension);
+    const result = await useService.buscar();
     setImages(result);
     setLoading(false)
 
@@ -48,14 +46,6 @@ export default function GaleriaPage() {
     <Template loading={loading}>
       <section className='flex flex-col items-center justify-center my-5'>
         <div className='flex space-x-4'>
-          <InputText onChange={event => setQuery(event.target.value)} placeholder='Type Name or Tags'/>
-          <select onChange={event => setExtension(event.target.value)}
-           className='border px-4 py-2 rounded-lg text-gray-900'>
-            <option value="">All formats</option>
-            <option value="PNG">PNG</option>
-            <option value="JPEG">JPEG</option>
-            <option value="GIF">GIF</option>
-          </select>
           <Button style='bg-blue-500 hover:bg-blue-300' label='Search' onClick={searchImages} />
           <Link href={'/formulario'}>
           <Button style='bg-yellow-500 hover:bg-yellow-300' label='Add New' />
