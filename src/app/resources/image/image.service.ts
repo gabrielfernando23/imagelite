@@ -3,9 +3,9 @@ import { Image } from './image.resource'
 import { Content } from 'next/font/google';
 
 class ImageService {
-    baseURL: string = 'http://172.18.03:8080/v1/images';
+    baseURL: string = 'http://localhost:8080/v1/images';
 
-    async buscar(query: string = "", extension: string = "") : Promise<Image[]> {
+    async buscar() : Promise<Image[]> {
         const url = `${this.baseURL}`;
         
         console.log('Fazendo requisição GET para:', url);
